@@ -22,17 +22,18 @@
                 </div>
                 <button type="button" class="btn btn-primary" id="start-btn">Start</button>
             </div>
-            <div class="d-none" id="question-screen"> <!-- d-none used for initial hide -->
-                <div id="current-question">Current question:</div>
+            <div class="d-none" id="question-screen">
+                <div class="current-question"></div>
                 <div id="countdown-timer"></div>
                 <div id="answer-options">
-                    <div class="possible-answers" id="possible-answer-1"></div>
-                    <div class="possible-answers" id="possible-answer-2"></div>
-                    <div class="possible-answers" id="possible-answer-3"></div>
-                    <div class="possible-answers" id="possible-answer-4"></div>
+                    <button type="button" class="btn btn-primary possible-answers"></button>
+                    <button type="button" class="btn btn-primary possible-answers"></button>
+                    <button type="button" class="btn btn-primary possible-answers"></button>
+                    <button type="button" class="btn btn-primary possible-answers"></button>
+                    <button type="button" class="btn btn-success d-none" id="next-question-btn">Next Question</button> <!-- temporary until timers implemented -->
                 </div>
             </div>
-            <div class="d-none" id="game-over-screen"> <!-- d-none used for initial hide -->
+            <div class="d-none" id="game-over-screen">
                 <div id="game-results">
                     <div id="num-correct"></div>
                     <div id="num-incorrect"></div>
