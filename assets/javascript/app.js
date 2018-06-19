@@ -3,6 +3,8 @@
 
 var numQuestions = questions.length;
 var currentQuestion = -1;
+var startingTime = 3; // seconds
+var timeLeft = 3; // seconds
 var currentAnswer;
 var numCorrect = 0;
 var numIncorrect = 0;
@@ -18,6 +20,18 @@ $(document).ready(function() {
         
     // }
 
+    //Timers
+    $("#starting-time").text(startingTime);
+    var countdownTimer = setInterval(updateTime, 1000);
+    function updateTime() {
+        timeLeft--;
+        $("#countdown-timer").text(timeLeft);
+        if (timeLeft <= 0) {
+            clearInterval(countdownTimer);
+            console.log("Time up!");
+        }
+    }
+
     $("#num-questions").text(numQuestions);
     
     $("#start-btn").click(function(){
@@ -27,6 +41,8 @@ $(document).ready(function() {
     });
 
     $(".possible-answers").click(function() {
+        clearInterval(countdownTimer);
+        $("#countdown-timer-div").addClass("d-none");
         $("#next-question-btn").removeClass("d-none"); // TO-DO: temporary until timers implemented
         currentAnswer = $(this).text();
         questionResult();
@@ -39,6 +55,10 @@ $(document).ready(function() {
     })
 
     function nextQuestion() {
+
+        $("#countdown-timer-div").removeClass("d-none");
+        timeLeft = startingTime;
+
         // reset button colors
         $(".possible-answers").each(function () {
             $(this).removeClass("btn-danger");
@@ -81,7 +101,7 @@ $(document).ready(function() {
             $("#answer-image").attr("src", imgURL);
             $("#answer-text").text(questions[currentQuestion].answerText);
             $("#question-result").removeClass("d-none");
-    }
+    };
 
     function gameResults() {
         $("#question-screen").addClass("d-none");
