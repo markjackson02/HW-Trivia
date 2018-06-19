@@ -3,8 +3,8 @@
 
 var numQuestions = questions.length;
 var currentQuestion = -1;
-var startingTime = 3; // seconds
-var timeLeft = 3; // seconds
+var startingTime = 5; // seconds
+var timeLeft = 5; // seconds
 var currentAnswer;
 var numCorrect = 0;
 var numIncorrect = 0;
