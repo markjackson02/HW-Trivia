@@ -5,6 +5,7 @@ $(document).ready(function() {
     var numCorrect = 0;
     var numIncorrect = 0;
     var numUnanswered = 0;
+    var finalScore;
 
     // function reset() {
     //     currentQuestion = -1;
@@ -62,14 +63,16 @@ $(document).ready(function() {
                     $(this).addClass("btn-danger");
                 }
             });
-
-            
-            
     }
 
     function gameResults() {
         $("#question-screen").addClass("d-none");
-        $("#game-results").removeClass("d-none");
+        finalScore = Math.floor((numCorrect / (numIncorrect + numUnanswered + numCorrect))*100);
+        $("#final-score").text(finalScore);
+        $("#num-correct").text(numCorrect);
+        $("#num-incorrect").text(numIncorrect);
+        $("#num-unanswered").text(numUnanswered);
+        $("#game-over-screen").removeClass("d-none");
     };
 });
 
