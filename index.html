@@ -10,28 +10,31 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/questions.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
-    <title>Wine Trivia</title>
+    <title>Super Mario Trivia</title>
 </head>
 <body>
     <div class="container">
-        <h1>Wine Trivia</h1>
+        <h1>Super Mario Trivia</h1>
         <div class="container" id="game-window">
             <div id="game-start-screen">
                 <div id="instructions">
-                    You will answer <strong>5</strong> questions about vino and have 20 seconds to answer each one.
+                    There are <span id="num-questions"></span> questions. You'll have 30 seconds to answer each one. Are you ready?
                 </div>
-                <button type="button" class="btn btn-primary" id="start-btn">Start</button>
+                <button type="button" class="btn btn-primary" id="start-btn">Go!</button>
             </div>
             <div class="d-none" id="question-screen">
                 <div class="current-question"></div>
                 <div id="countdown-timer"></div>
-                <div id="question-result"></div>
                 <div id="answer-options">
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-success d-none" id="next-question-btn">Next Question</button> <!-- temporary until timers implemented -->
+                </div>
+                <div class="d-none" id="question-result">
+                    <img id="answer-image">
+                    <div id="answer-text"></div>    
                 </div>
             </div>
             <div class="d-none" id="game-over-screen">

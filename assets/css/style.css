@@ -6,3 +6,7 @@ h1 {
     display: block;
     margin: 5px auto;
 }
+
+#answer-image {
+    max-width: 350px;
+}

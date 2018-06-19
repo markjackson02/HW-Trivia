@@ -1,11 +1,15 @@
-$(document).ready(function() {
+// Features to add: 
+    // Dynamic # of answer buttons based on # of possible answers in the 'questions' object (currently assumes 4 possible answers for all questions)
 
-    var currentQuestion = -1;
-    var currentAnswer;
-    var numCorrect = 0;
-    var numIncorrect = 0;
-    var numUnanswered = 0;
-    var finalScore;
+var numQuestions = questions.length;
+var currentQuestion = -1;
+var currentAnswer;
+var numCorrect = 0;
+var numIncorrect = 0;
+var numUnanswered = 0;
+var finalScore;
+
+$(document).ready(function() {
 
     // function reset() {
     //     currentQuestion = -1;
@@ -13,6 +17,8 @@ $(document).ready(function() {
     // ... etc
         
     // }
+
+    $("#num-questions").text(numQuestions);
     
     $("#start-btn").click(function(){
         $("#game-start-screen").addClass("d-none");
@@ -21,24 +27,26 @@ $(document).ready(function() {
     });
 
     $(".possible-answers").click(function() {
-        $("#next-question-btn").removeClass("d-none"); // temporary until timers implemented
+        $("#next-question-btn").removeClass("d-none"); // TO-DO: temporary until timers implemented
         currentAnswer = $(this).text();
         questionResult();
         // TO-DO: need to make buttons unclickable on question result screen
     });
 
-    $("#next-question-btn").click(function() { // temporary until timers implemented
+    $("#next-question-btn").click(function() { // TO-DO: temporary until timers implemented
         $("#next-question-btn").addClass("d-none");
         nextQuestion();
     })
 
     function nextQuestion() {
-        $(".possible-answers").each(function () { // reset colors
+        // reset button colors
+        $(".possible-answers").each(function () {
             $(this).removeClass("btn-danger");
             $(this).removeClass("btn-success");
         });
         
         currentQuestion++;
+        currentAnswer = null;
         if (currentQuestion < questions.length) {
             $(".current-question").text(questions[currentQuestion].question);
             $(".possible-answers").each(function(index) {
@@ -50,10 +58,12 @@ $(document).ready(function() {
     };
 
     function questionResult() {
-            if (currentAnswer === questions[currentQuestion].correctAnswer) { //make correct answer green
+            if (currentAnswer === questions[currentQuestion].correctAnswer) {
                 numCorrect++;
+            } else if (currentAnswer === null) {
+                numUnanswered++;
             } else {
-                numIncorrect++; // TO-DO: once introduct timers, need to account for unanswered
+                numIncorrect++;
             }
 
             $(".possible-answers").each(function(index) {
@@ -75,4 +85,3 @@ $(document).ready(function() {
         $("#game-over-screen").removeClass("d-none");
     };
 });
-
