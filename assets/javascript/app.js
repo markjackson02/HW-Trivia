@@ -44,6 +44,9 @@ $(document).ready(function() {
             $(this).removeClass("btn-danger");
             $(this).removeClass("btn-success");
         });
+
+        // reset answer box
+        $("#question-result").addClass("d-none");
         
         currentQuestion++;
         currentAnswer = null;
@@ -73,6 +76,11 @@ $(document).ready(function() {
                     $(this).addClass("btn-danger");
                 }
             });
+            var imgURL = "assets/images/" + questions[currentQuestion].answerImage;
+            console.log(imgURL);
+            $("#answer-image").attr("src", imgURL);
+            $("#answer-text").text(questions[currentQuestion].answerText);
+            $("#question-result").removeClass("d-none");
     }
 
     function gameResults() {
