@@ -23,6 +23,7 @@ $(document).ready(function() {
         $("#next-question-btn").removeClass("d-none"); // temporary until timers implemented
         currentAnswer = $(this).text();
         questionResult();
+        // TO-DO: need to make buttons unclickable on question result screen
     });
 
     $("#next-question-btn").click(function() { // temporary until timers implemented
@@ -31,8 +32,7 @@ $(document).ready(function() {
     })
 
     function nextQuestion() {
-        //reset green/red success/danger buttons
-        $(".possible-asnswers").each(function () {
+        $(".possible-answers").each(function () { // reset colors
             $(this).removeClass("btn-danger");
             $(this).removeClass("btn-success");
         });
@@ -49,20 +49,22 @@ $(document).ready(function() {
     };
 
     function questionResult() {
-        $(".possible-answers").each(function(index) {
-            if ($(this).text === questions[currentQuestion].correctAnswer) { //make correct answer green
-                $(this).addClass("btn-success");
-                if ($(this).text === currentAnswer) {
-                    numCorrect++;
-                }
+            if (currentAnswer === questions[currentQuestion].correctAnswer) { //make correct answer green
+                numCorrect++;
             } else {
-                numIncorrect++; // once introduct timers, need to account for unanswered
-                if ($(this).text === currentAnswer) { // if user guessed incorrect answer make that one red
+                numIncorrect++; // TO-DO: once introduct timers, need to account for unanswered
+            }
+
+            $(".possible-answers").each(function(index) {
+                if ($(this).text() === questions[currentQuestion].correctAnswer) {
+                    $(this).addClass("btn-success");
+                } else if ($(this).text() === currentAnswer) {
                     $(this).addClass("btn-danger");
                 }
-            }
+            });
+
             
-        });
+            
     }
 
     function gameResults() {
