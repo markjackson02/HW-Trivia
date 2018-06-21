@@ -3,9 +3,10 @@
 
 var numQuestions = questions.length;
 var currentQuestion = -1;
-var startingTime = 5; // seconds
-var timeLeft = 5; // seconds
-var intervalID = null;
+var startingTime = 5; // for Countdown Timer
+var timeLeft = 5; // for Countdown Timer
+var startingTimeAnswer = 15; // for Answer Result Timer
+var timeLeftAnswer = 15; // for Answer Result Timer
 var currentAnswer;
 var numCorrect = 0;
 var numIncorrect = 0;
@@ -19,7 +20,7 @@ function toStartScreen() {
 
 $(document).ready(function() {
 
-    // Timer
+    // Countdown Timer
     var countdownTimer;
     function updateTime() {
         timeLeft--;
@@ -28,6 +29,17 @@ $(document).ready(function() {
             clearInterval(countdownTimer);
         }
     };
+
+    // Answer Result Timer
+    var answerResultTimer;
+    function waitTime() { 
+        timeLeftAnswer--;
+        if (timeLeftAnswer <= 0) {
+            clearInterval(answerResultTimer);
+            $("#next-question-btn").addClass("d-none");
+            nextQuestion();
+        }
+    }
 
     // Set home screen values
     $("#starting-time").text(startingTime);
@@ -40,12 +52,16 @@ $(document).ready(function() {
 
     $(".possible-answers").click(function() {
 
-        // Timer
+        // Countdown Timer
         clearInterval(countdownTimer); // after answer is clicked
+
+        // Answer Result Timer (Not working yet)
+        // answerResultTimer = setInterval(waitTime, 1000);
 
         $("#countdown-timer-div").addClass("d-none");
         $("#next-question-btn").removeClass("d-none"); // TO-DO: temporary until timers implemented
         currentAnswer = $(this).text();
+
         toQuestionResult();
         // TO-DO: need to make buttons unclickable on question result screen
     });
@@ -57,11 +73,12 @@ $(document).ready(function() {
 
     function nextQuestion() {
 
-        $("#countdown-timer-div").removeClass("d-none");
         timeLeft = startingTime;
+        $("#countdown-timer").text(timeLeft);
+        $("#countdown-timer-div").removeClass("d-none");
         console.log("time left at nextQuestion(): " + timeLeft);
 
-        // Timer
+        // Countdown Timer
         countdownTimer = setInterval(updateTime, 1000);
 
         // reset button colors
