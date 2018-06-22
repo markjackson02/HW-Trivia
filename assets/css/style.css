@@ -2,8 +2,8 @@ h1 {
     font-size: 36px;
 }
 
-.possible-answers, .next-question-btn { /* .next-question-btn is temporary until timers are implemented */
-    display: block;
+.possible-answers {
+    display: inline-block;
     margin: 5px auto;
 }
 

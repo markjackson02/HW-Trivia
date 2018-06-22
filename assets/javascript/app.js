@@ -1,13 +1,11 @@
-// TO-DO: auto continue without input if user does not click within allowed timeframe.
-
-// Features to add: 
+// Things I could add to make it better: 
     // Dynamic # of answer buttons based on # of possible answers in the 'questions' object (currently assumes 4 possible answers for all questions)
 
 var numQuestions = questions.length;
 var currentQuestion = -1;
 var startingTime = 30; // for Countdown Timer
 var timeLeft = 30; // for Countdown Timer
-var answerResultTimer;
+var answerResultTimer; // for Answer Result Timer
 var displayAnswerDuration = 10; // for Answer Result Timer
 var currentAnswer;
 var acceptingAnswers = true; // used to prevent multiple button clicks from
@@ -68,6 +66,8 @@ $(document).ready(function() {
 
         acceptingAnswers = true;
 
+        $(".possible-answers-side-text").text("");
+
         timeLeft = startingTime;
         $("#countdown-timer").text(timeLeft);
         $("#countdown-timer-div").removeClass("d-none");
@@ -98,6 +98,8 @@ $(document).ready(function() {
 
     function toQuestionResult() {
 
+        $("#countdown-timer-div").addClass("d-none");
+
         acceptingAnswers = false;
         
         // Increment counters to show on results page
@@ -114,11 +116,19 @@ $(document).ready(function() {
         console.log("numUnanswered: " + numUnanswered);
 
         // Change button colors to: Green for Correct Answer, Red for Incorrectly guessed answer
-        $(".possible-answers").each(function() {
+        $(".possible-answers").each(function(index) {
+            var sideTextElement = $(".possible-answers-side-text")[index];
+            console.log($(".possible-answers-side-text")[index]);
             if ($(this).text() === questions[currentQuestion].correctAnswer) {
                 $(this).addClass("btn-success");
+                if ($(this).text() === currentAnswer) {
+                    $(sideTextElement).text(" <-- You guessed it right!")
+                } else { 
+                    $(sideTextElement).text(" <-- Correct Answer")
+                }
             } else if ($(this).text() === currentAnswer) {
                 $(this).addClass("btn-danger");
+                $(sideTextElement).text(" <-- Your Guess")
             }
         });
 
