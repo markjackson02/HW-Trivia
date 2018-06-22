@@ -10,6 +10,7 @@ var timeLeft = 30; // for Countdown Timer
 var answerResultTimer;
 var displayAnswerDuration = 10; // for Answer Result Timer
 var currentAnswer;
+var acceptingAnswers = true; // used to prevent multiple button clicks from
 var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
@@ -50,17 +51,22 @@ $(document).ready(function() {
 
     $(".possible-answers").click(function() {
 
-        // Countdown Timer
-        clearInterval(countdownTimer); // after answer is clicked
+        if (acceptingAnswers === true) {
+            // Countdown Timer
+            clearInterval(countdownTimer); // after answer is clicked
 
-        $("#countdown-timer-div").addClass("d-none");
-        currentAnswer = $(this).text();
+            $("#countdown-timer-div").addClass("d-none");
+            currentAnswer = $(this).text();
 
-        toQuestionResult();
-        // TO-DO: need to make buttons unclickable on question result screen
+            toQuestionResult();
+            // TO-DO: need to make buttons unclickable on question result screen
+        }
+        
     });
 
     function nextQuestion() {
+
+        acceptingAnswers = true;
 
         timeLeft = startingTime;
         $("#countdown-timer").text(timeLeft);
@@ -91,6 +97,8 @@ $(document).ready(function() {
     };
 
     function toQuestionResult() {
+
+        acceptingAnswers = false;
         
         // Increment counters to show on results page
         if (currentAnswer === questions[currentQuestion].correctAnswer) {
@@ -100,6 +108,10 @@ $(document).ready(function() {
         } else {
             numIncorrect++;
         }
+
+        console.log("numCorrect: " + numCorrect);
+        console.log("numIncorrect: " + numIncorrect);
+        console.log("numUnanswered: " + numUnanswered);
 
         // Change button colors to: Green for Correct Answer, Red for Incorrectly guessed answer
         $(".possible-answers").each(function() {
@@ -121,7 +133,6 @@ $(document).ready(function() {
         // stay here until timeout... then move to nextQuestion
         answerResultTimer = setTimeout(resultToNextQuestion, 1000 * displayAnswerDuration);
     };
-
     function toGameResults() {
         $("#question-screen").addClass("d-none");
         finalScore = Math.floor((numCorrect / (numIncorrect + numUnanswered + numCorrect))*100);
