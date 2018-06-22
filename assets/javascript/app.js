@@ -1,19 +1,21 @@
+// TO-DO: auto continue without input if user does not click within allowed timeframe.
+
 // Features to add: 
     // Dynamic # of answer buttons based on # of possible answers in the 'questions' object (currently assumes 4 possible answers for all questions)
 
 var numQuestions = questions.length;
 var currentQuestion = -1;
-var startingTime = 5; // for Countdown Timer
-var timeLeft = 5; // for Countdown Timer
-var startingTimeAnswer = 15; // for Answer Result Timer
-var timeLeftAnswer = 15; // for Answer Result Timer
+var startingTime = 30; // for Countdown Timer
+var timeLeft = 30; // for Countdown Timer
+var answerResultTimer;
+var displayAnswerDuration = 10; // for Answer Result Timer
 var currentAnswer;
 var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = 0;
 var finalScore;
 
-function toStartScreen() {
+function toQuestionScreen() {
     $("#game-start-screen").addClass("d-none");
     $("#question-screen").removeClass("d-none");
 };
@@ -27,26 +29,22 @@ $(document).ready(function() {
         $("#countdown-timer").text(timeLeft);
         if (timeLeft <= 0) {
             clearInterval(countdownTimer);
+            toQuestionResult();
         }
     };
 
-    // Answer Result Timer
-    var answerResultTimer;
-    function waitTime() { 
-        timeLeftAnswer--;
-        if (timeLeftAnswer <= 0) {
-            clearInterval(answerResultTimer);
-            $("#next-question-btn").addClass("d-none");
-            nextQuestion();
-        }
+    function resultToNextQuestion() { 
+        nextQuestion();
     }
 
     // Set home screen values
     $("#starting-time").text(startingTime);
     $("#num-questions").text(numQuestions);
+    $("#question-time-limit").text(startingTime);
+    $("#question-review-time").text(displayAnswerDuration);
     
     $("#start-btn").click(function(){
-        toStartScreen();
+        toQuestionScreen();
         nextQuestion();
     });
 
@@ -55,20 +53,11 @@ $(document).ready(function() {
         // Countdown Timer
         clearInterval(countdownTimer); // after answer is clicked
 
-        // Answer Result Timer (Not working yet)
-        // answerResultTimer = setInterval(waitTime, 1000);
-
         $("#countdown-timer-div").addClass("d-none");
-        $("#next-question-btn").removeClass("d-none"); // TO-DO: temporary until timers implemented
         currentAnswer = $(this).text();
 
         toQuestionResult();
         // TO-DO: need to make buttons unclickable on question result screen
-    });
-
-    $("#next-question-btn").click(function() { // TO-DO: temporary until timers implemented
-        $("#next-question-btn").addClass("d-none");
-        nextQuestion();
     });
 
     function nextQuestion() {
@@ -76,7 +65,6 @@ $(document).ready(function() {
         timeLeft = startingTime;
         $("#countdown-timer").text(timeLeft);
         $("#countdown-timer-div").removeClass("d-none");
-        console.log("time left at nextQuestion(): " + timeLeft);
 
         // Countdown Timer
         countdownTimer = setInterval(updateTime, 1000);
@@ -128,6 +116,10 @@ $(document).ready(function() {
         $("#answer-image").attr("src", imgURL);
         $("#answer-text").text(questions[currentQuestion].answerText);
         $("#question-result").removeClass("d-none");
+
+        // Answer Result Timer (Not working yet)
+        // stay here until timeout... then move to nextQuestion
+        answerResultTimer = setTimeout(resultToNextQuestion, 1000 * displayAnswerDuration);
     };
 
     function toGameResults() {

@@ -18,7 +18,7 @@
         <div class="container" id="game-window">
             <div id="game-start-screen">
                 <div id="instructions">
-                    There are <span id="num-questions"></span> questions. You'll have 30 seconds to answer each one. Are you ready?
+                    There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review the answer. Are you ready?
                 </div>
                 <button type="button" class="btn btn-primary" id="start-btn">Go!</button>
             </div>
@@ -30,7 +30,6 @@
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-primary possible-answers"></button>
                     <button type="button" class="btn btn-primary possible-answers"></button>
-                    <button type="button" class="btn btn-success d-none" id="next-question-btn">Next Question</button> <!-- temporary until timers implemented -->
                 </div>
                 <div class="d-none" id="question-result">
                     <img id="answer-image">
