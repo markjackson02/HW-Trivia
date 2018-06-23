@@ -1,5 +1,20 @@
+body {
+    background-image: url("../images/Wallpaper.png");
+    background-color: #cccccc;
+    background-size: 100%;
+ }
+
 h1 {
     font-size: 36px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+#header {
+    margin: 25px 0px;
 }
 
 .possible-answers {
@@ -9,4 +24,8 @@ h1 {
 
 #answer-image {
     max-width: 350px;
+}
+
+#game-window-center {
+    text-align: center;
 }
