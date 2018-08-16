@@ -16,53 +16,72 @@
 <body>
     <div class="container">
         
-        <h1 id="header">Super Mario Trivia</h1>
-
+        <div class="row">
+            <div class="col mx-auto text-center">
+                <h1 id="header">Super Mario Trivia</h1>
+            </div>
+        </div>
+        
         <div class="row" id="game-window">
-            <div class="row" id="game-window-center">
-                    <div id="game-start-screen text-center">
-                        <div id="instructions">
-                            There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review the answer. Are you ready?
-                        </div>
-                        <br>
-                        <button type="button" class="btn btn-primary" id="start-btn">Go!</button>
-                    </div>
+            <div class="col" id="game-window-center">
 
-                    <div class="d-none" id="game-over-screen">
-                        <div id="game-results">
-                            <div>Your Score: <span id="final-score"></span>%</div>
-                            <div># Correct: <span id="num-correct"></span></div>
-                            <div># Incorrect: <span id="num-incorrect"></span></div>
-                            <div># Unanswered: <span id="num-unanswered"></span></div>
-                        </div>
-                        <button type="button" class="btn btn-primary" id="play-again-btn">Play Again</button>
-                    </div>
-            </div>
-            
-            <div class="row" id="game-window-left-right">
-                <div class="col-6" id="game-window-left">
-                    <div class="d-none" id="question-screen">
-                        <div class="current-question"></div>
-                        <div id="countdown-timer-div">Time left: <span id="countdown-timer"><span id="starting-time"></span></span></div>
-                        <div id="answer-options">
-                            <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
-                            <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
-                            <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
-                            <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
+                <div id="game-start-screen">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="instructions">
+                                There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review the answer.
+                            </div>
+                            <br>
+                            <button type="button" class="btn btn-primary" id="start-btn">Start!</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-6" id="game-window-right">
-                    <div class="d-none" id="question-result">
-                        <h2>Answer</h2>
-                        <div id="answer-text"></div>
-                        <br>
-                        <img id="answer-image">    
+                <div class="d-none" id="game-over-screen">
+                    <div id="game-results">
+                        <div>Your Score: <span id="final-score"></span>%</div>
+                        <div># Correct: <span id="num-correct"></span></div>
+                        <div># Incorrect: <span id="num-incorrect"></span></div>
+                        <div># Unanswered: <span id="num-unanswered"></span></div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="play-again-btn">Play Again</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6" id="game-window-left">
+                <div class="d-none" id="question-screen">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Question</h2>
+                            <div class="current-question"></div>
+                            <div id="answer-options">
+                                <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
+                                <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
+                                <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
+                                <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
+                            </div>
+                            <div id="countdown-timer-div">Time left: <span id="countdown-timer"></span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-                     
+
+            <div class="col-6" id="game-window-right">
+                <div class="d-none" id="question-result">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Answer</h2>
+                            <div id="answer-text"></div>
+                            <br>
+                            <img id="answer-image">  
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
         </div>
 
     </div>

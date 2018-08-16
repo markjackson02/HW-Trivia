@@ -3,15 +3,8 @@
     src: url("../fonts/SuperMario256.ttf");
 }
 
-body {
-    /* background-image: url("../images/Wallpaper.png"); */
-    /* background-color: #cccccc; */
-    /* background-size: 100%; */
- }
-
 h1 {
     font-size: 36px;
-    text-align: center;
     font-family: "SuperMario256";
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
@@ -39,4 +32,9 @@ h2 {
 
 .text-center {
     text-align: center;
+}
+
+#countdown-timer {
+    color: red;
+    font-weight: bold;
 }

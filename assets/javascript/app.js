@@ -37,7 +37,7 @@ $(document).ready(function() {
     }
 
     // Set home screen values
-    $("#starting-time").text(startingTime);
+    $("#countdown-timer").text(startingTime);
     $("#num-questions").text(numQuestions);
     $("#question-time-limit").text(startingTime);
     $("#question-review-time").text(displayAnswerDuration);
@@ -142,7 +142,9 @@ $(document).ready(function() {
         // Answer Result Timer (Not working yet)
         // stay here until timeout... then move to nextQuestion
         answerResultTimer = setTimeout(resultToNextQuestion, 1000 * displayAnswerDuration);
+
     };
+
     function toGameResults() {
         $("#question-screen").addClass("d-none");
         finalScore = Math.floor((numCorrect / (numIncorrect + numUnanswered + numCorrect))*100);

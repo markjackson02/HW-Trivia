@@ -36,7 +36,7 @@ var questions = shuffle([
         answerText: "Super Mario Kart is the very first Mario Kart game, released in 1992."
     },
     {
-        question: "In Super Mario Sunshine for the Gamecube, Mario made friends with a machine. Its name was:",
+        question: "In Super Mario Sunshine for the Gamecube, Mario made friends with a machine. It's name was:",
         correctAnswer: "FLUDD",
         options: shuffle(["Dolphin", "FLUDD", "The magic paintbrush", "It had no name"]),
         answerImage: "FLUDD.jpg",
