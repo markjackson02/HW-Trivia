@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div id="instructions">
                                 <p>Mario Time!</p>
-                                <p>There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review each answer.</p>
+                                <p>There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each question.</p>
                                 <p><button type="button" class="btn btn-primary" id="start-btn">Let's-a-go!</button></p>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div># Incorrect: <span id="num-incorrect"></span></div>
                         <div># Unanswered: <span id="num-unanswered"></span></div>
                     </div>
-                    <button type="button" class="btn btn-primary" id="play-again-btn">Play Again</button>
+                    <!-- <button type="button" class="btn btn-primary" id="play-again-btn">Play Again</button> -->
                 </div>
 
             </div>
@@ -76,7 +76,7 @@
                             <h2 class="card-title">Answer</h2>
                             <p><div id="answer-text"></div></p>
                             <p><img id="answer-image"></p>
-                            <p id="answer-countdown-timer-div">Time left: <span id="answer-countdown-timer" class="timer"></span></p>
+                            <div><button type="button" class="btn btn-success" id="next-question-btn">Next Question</button></div>
                         </div>
                     </div>  
                 </div>

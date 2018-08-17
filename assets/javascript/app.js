@@ -26,18 +26,10 @@ $(document).ready(function() {
     function updateTime() {
         timeLeft--;
         $("#countdown-timer").text(timeLeft);
-        $("#answer-countdown-timer").text(timeLeft);
         if (timeLeft <= 0) {
 
             clearInterval(countdownTimer);
-            
-            if (acceptingAnswers === true) {
-                toQuestionResult();
-            } else if (acceptingAnswers === false) {
-                nextQuestion();
-            } else {
-                console.log("Error");
-            }
+            toQuestionResult();
             
         }
     };
@@ -48,13 +40,15 @@ $(document).ready(function() {
 
     // Set home screen values
     $("#countdown-timer").text(startingTime);
-    $("#answer-countdown-timer").text(displayAnswerDuration);
     $("#num-questions").text(numQuestions);
     $("#question-time-limit").text(startingTime);
-    $("#question-review-time").text(displayAnswerDuration);
     
     $("#start-btn").click(function(){
         toQuestionScreen();
+        nextQuestion();
+    });
+
+    $("#next-question-btn").click(function(){
         nextQuestion();
     });
 
@@ -145,11 +139,6 @@ $(document).ready(function() {
         $("#answer-image").attr("src", imgURL);
         $("#answer-text").text(questions[currentQuestion].answerText);
         $("#question-result").removeClass("d-none");
-
-        // Answer Result Timer
-        timeLeft = displayAnswerDuration;
-        $("#answer-countdown-timer").text(displayAnswerDuration);
-        countdownTimer = setInterval(updateTime, 1000);
 
     };
 

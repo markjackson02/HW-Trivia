@@ -34,7 +34,12 @@ h2 {
     text-align: center;
 }
 
-.timer {
+#countdown-timer {
     color: red;
+    font-weight: bold;
+}
+
+#answer-countdown-timer {
+    color: green;
     font-weight: bold;
 }
