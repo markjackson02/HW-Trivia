@@ -34,10 +34,6 @@ $(document).ready(function() {
         }
     };
 
-    function resultToNextQuestion() { 
-        nextQuestion();
-    }
-
     // Set home screen values
     $("#countdown-timer").text(startingTime);
     $("#num-questions").text(numQuestions);
