@@ -29,10 +29,10 @@
                     <div class="card">
                         <div class="card-body">
                             <div id="instructions">
-                                There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review the answer.
+                                <p>Mario Time!</p>
+                                <p>There are <span id="num-questions"></span> questions. You'll have <span id="question-time-limit"></span> seconds to answer each one, and <span id="question-review-time"></span> seconds to review each answer.</p>
+                                <p><button type="button" class="btn btn-primary" id="start-btn">Let's-a-go!</button></p>
                             </div>
-                            <br>
-                            <button type="button" class="btn btn-primary" id="start-btn">Start!</button>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                                 <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
                                 <div><button type="button" class="btn btn-primary possible-answers"></button><span class="possible-answers-side-text"></span></div>
                             </div>
-                            <div id="countdown-timer-div">Time left: <span id="countdown-timer"></span></div>
+                            <p id="countdown-timer-div">Time left: <span id="countdown-timer" class="timer"></span></p>
                         </div>
                     </div>
                 </div>
@@ -74,9 +74,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title">Answer</h2>
-                            <div id="answer-text"></div>
-                            <br>
-                            <img id="answer-image">  
+                            <p><div id="answer-text"></div></p>
+                            <p><img id="answer-image"></p>
+                            <p id="answer-countdown-timer-div">Time left: <span id="answer-countdown-timer" class="timer"></span></p>
                         </div>
                     </div>  
                 </div>

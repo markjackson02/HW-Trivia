@@ -21,14 +21,24 @@ function toQuestionScreen() {
 
 $(document).ready(function() {
 
-    // Countdown Timer
+    // Define Countdown Timer
     var countdownTimer;
     function updateTime() {
         timeLeft--;
         $("#countdown-timer").text(timeLeft);
+        $("#answer-countdown-timer").text(timeLeft);
         if (timeLeft <= 0) {
+
             clearInterval(countdownTimer);
-            toQuestionResult();
+            
+            if (acceptingAnswers === true) {
+                toQuestionResult();
+            } else if (acceptingAnswers === false) {
+                nextQuestion();
+            } else {
+                console.log("Error");
+            }
+            
         }
     };
 
@@ -38,6 +48,7 @@ $(document).ready(function() {
 
     // Set home screen values
     $("#countdown-timer").text(startingTime);
+    $("#answer-countdown-timer").text(displayAnswerDuration);
     $("#num-questions").text(numQuestions);
     $("#question-time-limit").text(startingTime);
     $("#question-review-time").text(displayAnswerDuration);
@@ -73,6 +84,7 @@ $(document).ready(function() {
         $("#countdown-timer-div").removeClass("d-none");
 
         // Countdown Timer
+        clearInterval(countdownTimer);
         countdownTimer = setInterval(updateTime, 1000);
 
         // reset button colors
@@ -111,10 +123,6 @@ $(document).ready(function() {
             numIncorrect++;
         }
 
-        console.log("numCorrect: " + numCorrect);
-        console.log("numIncorrect: " + numIncorrect);
-        console.log("numUnanswered: " + numUnanswered);
-
         // Change button colors to: Green for Correct Answer, Red for Incorrectly guessed answer
         $(".possible-answers").each(function(index) {
             var sideTextElement = $(".possible-answers-side-text")[index];
@@ -134,14 +142,14 @@ $(document).ready(function() {
 
         // Show Answer Information
         var imgURL = "assets/images/" + questions[currentQuestion].answerImage;
-        console.log(imgURL);
         $("#answer-image").attr("src", imgURL);
         $("#answer-text").text(questions[currentQuestion].answerText);
         $("#question-result").removeClass("d-none");
 
-        // Answer Result Timer (Not working yet)
-        // stay here until timeout... then move to nextQuestion
-        answerResultTimer = setTimeout(resultToNextQuestion, 1000 * displayAnswerDuration);
+        // Answer Result Timer
+        timeLeft = displayAnswerDuration;
+        $("#answer-countdown-timer").text(displayAnswerDuration);
+        countdownTimer = setInterval(updateTime, 1000);
 
     };
 

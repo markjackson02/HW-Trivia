@@ -34,7 +34,7 @@ h2 {
     text-align: center;
 }
 
-#countdown-timer {
+.timer {
     color: red;
     font-weight: bold;
 }
